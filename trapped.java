@@ -28,7 +28,7 @@ public class trapped {
         Arrays.sort(bales);
 
         for (int i = 0; i < N; i++) {
-            System.out.println("Posiion,Size = " + bales[i].position + "," + bales[i].size);
+            System.out.println("Posiion,Size == " + bales[i].position + "," + bales[i].size);
         }
 
 
