@@ -4,7 +4,6 @@ import java.util.*;
 
 public class slowdown {
     public static void main(String[] args) throws IOException {
-        double TOTAL_DISTANCE = 1000.00;
 
         BufferedReader in = new BufferedReader(new FileReader("slowdown.in"));
         double n = Integer.parseInt(in.readLine());
