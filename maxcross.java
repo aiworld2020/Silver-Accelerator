@@ -3,8 +3,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 
 public class maxcross {
     public static void main(String[] args) throws IOException {
@@ -15,13 +14,12 @@ public class maxcross {
         int K = Integer.parseInt(parts[1]);
         int B = Integer.parseInt(parts[2]);
 
-        ArrayList<Integer> broken = new ArrayList<>();
+        Boolean[] broken = new Boolean[N+1];
+        Arrays.fill(broken, false);
         for (int i = 0; i < B; i++) {
-            broken.add(Integer.parseInt(in.readLine()));
+            broken[Integer.parseInt(in.readLine())] = true;
+
         }   
-
-        Collections.sort(broken);
-
         int a = 0;
         int b = B;
         while(a != b) {
@@ -39,13 +37,13 @@ public class maxcross {
         out.close();
 
     }
-    static boolean check(int mid, int N, int K, ArrayList<Integer> broken) {
+    static boolean check(int mid, int N, int K, Boolean[] broken) {
         int current = 1;
         int brokenPassed = 0;
         int a = 1;
         int b = K;
         while (b <= N) {
-            if (broken.contains(current)) brokenPassed++;
+            if (broken[current]) brokenPassed++;
             if (brokenPassed > mid) {
                 a++;
                 b++;
