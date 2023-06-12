@@ -39,34 +39,16 @@ public class convention {
 
     }
     static boolean checkTime(int mid, int N, int M, int C, Integer[] times) {
-        int cowCount = 0;
-        int busCount = 0;
-        int starttime = 0;
-        for (int i = 0; i < N; i++) {
-            cowCount++;
-            if (cowCount == 1){
-                if (times[i] > mid) {
-                    cowCount = 0;
-                    busCount++;
-                    starttime=0;
-                } 
-                else starttime = times[i];
-            } else {
-                if (times[i] - starttime > mid) {
-                    cowCount = 0;
-                    busCount++;
-                    starttime=0;
-                }
-            }
-            if (cowCount == C) {
+        int firstIndex = 0;
+        int busCount = 1;
+        int starttime = times[0]    ;
+        for (int i = 1; i < N; i++) {
+            if (times[i] - starttime > mid || i + 1 - firstIndex > C) {
                 busCount++;
-                cowCount = 0;
-                starttime = 0;
-            }
-            if (busCount > M) {
-                return false;
+                starttime = times[i];
+                firstIndex = i;
             }
         }
-        return true;
+        return (busCount <= M);
     }
 }
