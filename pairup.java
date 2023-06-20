@@ -2,32 +2,58 @@ import java.io.*;
 import java.util.*;
 
 public class pairup {
+    static int N;
+    static cow[] cows;
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new FileReader("pairup.in"));
-        long N = Long.parseLong(in.readLine());
-        long answer = 0;
-        ArrayList<Integer> oddcows = new ArrayList<>();
-        
-        String line = "";
+        N = Integer.parseInt(in.readLine());
+        cows = new cow[N];
+
         for (int i = 0; i < N; i++) {
-            line = in.readLine();
+            String line = in.readLine();
             String[] parts = line.split(" ");
-            oddcows.add(Integer.parseInt(parts[1]), Integer.parseInt(parts[0]));
+            cows[i] = new cow(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]));
+        }
+        Arrays.sort(cows);
+
+        int a = 0;
+        int b = N-1;
+        int answer = 0;
+        while (a != b) {
+            answer = Math.max(answer, cows[b].output + cows[a].output);
+            if (cows[a].number > cows[b].number) {
+                cows[a].number -= cows[b].number;
+                b--;
+            }
+            else if (cows[a].number < cows[b].number) {
+                cows[b].number -= cows[a].number;
+                a++;
+            }
+            else {
+                a++;
+                b--;
+            }
+        }
+        if (cows[a].number != 0) {
+            answer = Math.max(answer, 2*cows[a].output);
         }
 
-        Collections.sort(oddcows);
-        long current_time = 0;
-        long left_index = 0;
-        long right_index = oddcows.size()-1;
-        while(left_index < oddcows.size()/2) {
-            current_time = oddcows.get((int)left_index) + oddcows.get((int)right_index);
-            answer = Math.max(answer, current_time);
-            left_index++;
-            right_index--;
-        }
         in.close();
         BufferedWriter out = new BufferedWriter(new FileWriter("pairup.out"));
         out.write(answer + "\n");
         out.close();    
     }
+
+    static class cow implements Comparable<cow> {
+        int number;
+        int output;
+        public cow(int n, int o) {
+            number = n;
+            output = o;
+        }
+        public int compareTo(cow y) {
+            return this.output - y.output;
+        }
+    }
+
 }
