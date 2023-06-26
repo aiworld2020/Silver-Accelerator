@@ -6,21 +6,13 @@ public class geteven {
         BufferedReader in = new BufferedReader(new FileReader("geteven.in"));
         int N = Integer.parseInt(in.readLine());
 
-        Integer[] Bs = new Integer[2];
-        Integer[] Es = new Integer[2];
-        Integer[] Ss = new Integer[2];
-        Integer[] Is = new Integer[2];
-        Integer[] Gs = new Integer[2];
-        Integer[] Os = new Integer[2];
-        Integer[] Ms = new Integer[2];
-
-        Arrays.fill(Bs, 0);
-        Arrays.fill(Es, 0);
-        Arrays.fill(Ss, 0);
-        Arrays.fill(Is, 0);
-        Arrays.fill(Gs, 0);
-        Arrays.fill(Os, 0);
-        Arrays.fill(Ms, 0);
+        int[] Bs = new int[2];
+        int[] Es = new int[2];
+        int[] Ss = new int[2];
+        int[] Is = new int[2];
+        int[] Gs = new int[2];
+        int[] Os = new int[2];
+        int[] Ms = new int[2];
 
         String line = "";
         for (int i = 0; i < N; i++) {
