@@ -25,7 +25,7 @@ public class socdist {
         Arrays.sort(sections);
         long low = 1;
         long high = (long)1e18;
-        while(low != high) {
+        while(low < high) {
             long D = (low+high+1)/2;
             if (check(D)) {
                 low = D;
@@ -40,23 +40,25 @@ public class socdist {
     static boolean check(long D) {
         long curr = sections[0].start;
         int idx = 0;
-        int cows = 1;
+        int cows = 0;
         while (idx < M) {
-            if (curr < sections[idx].start) {
+            if (curr <= sections[idx].start) {
                 curr = sections[idx].start;
-                continue;
+                //continue;
             }
             if (curr > sections[idx].end) {
                 idx++;
-                continue;
+                //continue;
             }
-            while (curr <= sections[idx].end) {
-                cows++;
-                curr += D;
+            else {
+                while (curr <= sections[idx].end) {
+                    cows++;
+                    curr += D;
+                }
             }
             if (cows >= N) return true;
         }
-        if (cows >= N) return true;
+        //if (cows >= N) return true;
         return false;
 
     }
