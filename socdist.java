@@ -43,7 +43,7 @@ public class socdist {
         int idx = 0;
         int cows = 0;
         while (idx < M) {
-            if (curr < sections[idx].start) {
+            if (curr <= sections[idx].start) {
                 curr = sections[idx].start;
                 //continue;
             }
